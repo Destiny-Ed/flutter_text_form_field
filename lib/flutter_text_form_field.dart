@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   final TextEditingController _controller;
   bool obscure;
+  Color backgroundColor;
+  Color pwdVisibilityColor;
   String hint;
   bool password;
   BoxBorder border;
@@ -23,8 +25,10 @@ class CustomTextField extends StatefulWidget {
       this.obscure = false,
       this.hint = '',
       this.border,
+      this.pwdVisibilityColor,
       this.borderRadius,
       this.readOnly = false,
+      this.backgroundColor,
       this.onPress,
       this.onEditingComplete,
       this.onFieldSubmitted,
@@ -36,14 +40,16 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  Icon visibility = const Icon(Icons.visibility);
+  Icon visibility;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: widget.backgroundColor == null
+            ? Colors.white
+            : widget.backgroundColor,
         borderRadius: widget.borderRadius ?? BorderRadius.circular(10),
         border: widget.border ?? Border.all(color: Colors.purple, width: 2.0),
       ),
@@ -61,16 +67,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     if (widget.obscure == true) {
                       setState(() {
                         widget.obscure = false;
-                        visibility = const Icon(Icons.visibility_off);
+                        visibility = Icon(Icons.visibility_off,
+                            color: widget.pwdVisibilityColor == null
+                                ? Colors.black
+                                : widget.pwdVisibilityColor);
                       });
                     } else {
                       setState(() {
                         widget.obscure = true;
-                        visibility = const Icon(Icons.visibility);
+                        visibility = Icon(Icons.visibility,
+                            color: widget.pwdVisibilityColor == null
+                                ? Colors.black
+                                : widget.pwdVisibilityColor);
                       });
                     }
                   },
-                  child: visibility,
+                  child: visibility == null
+                      ? Icon(Icons.visibility,
+                          color: widget.pwdVisibilityColor == null
+                              ? Colors.black
+                              : widget.pwdVisibilityColor)
+                      : visibility,
                 )
               : const Text(""),
           isDense: true,
