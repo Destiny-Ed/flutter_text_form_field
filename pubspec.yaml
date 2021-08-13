@@ -1,12 +1,12 @@
 name: flutter_text_form_field
 description: A new Flutter package that provide already made text form field with password visibility toggle
-version: 0.0.2
+version: 0.0.3
 #author: Destiny Ed <dikeachaeze@gmail.com>
 homepage: https://github.com/Destiny-Ed/flutter_text_form_field
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.2.0"
+  flutter: ">=2.2.0"
 
 dependencies:
   flutter:
