@@ -7,20 +7,20 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   final TextEditingController _controller;
   bool obscure;
-  Color backgroundColor;
-  Color pwdVisibilityColor;
+  Color? backgroundColor;
+  Color? pwdVisibilityColor;
   String hint;
   bool password;
-  BoxBorder border;
-  BorderRadiusGeometry borderRadius;
+  BoxBorder? border;
+  BorderRadiusGeometry? borderRadius;
   bool readOnly;
-  Function(String) onPress;
-  Function() onEditingComplete;
-  Function(String) onFieldSubmitted;
-  String Function(String) validator;
+  Function(String)? onPress;
+  Function()? onEditingComplete;
+  Function(String)? onFieldSubmitted;
+  String Function(String?)? validator;
 
   CustomTextField(this._controller,
-      {Key key,
+      {Key? key,
       this.password = true,
       this.obscure = false,
       this.hint = '',
@@ -40,7 +40,7 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  Icon visibility;
+  Icon? visibility;
 
   @override
   Widget build(BuildContext context) {
